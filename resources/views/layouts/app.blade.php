@@ -14,6 +14,10 @@
         <div class="ms-auto d-flex align-items-center gap-3">
             @auth
                 <span class="text-white-50">{{ auth()->user()->name }} ({{ auth()->user()->role }})</span>
+                @if(auth()->user()->isAdmin() || auth()->user()->isModerator())
+                     <a href="{{ route('manage.products.index') }}" class="btn btn-sm btn-outline-light">Produkty</a>
+                @endif
+                
                 @if(auth()->user()->isAdmin())
                     <a href="{{ route('admin.users.index') }}" class="btn btn-sm btn-outline-light">Panel admina</a>
                 @endif
