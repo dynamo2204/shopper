@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,4 +25,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', AdminUserController::class);
+});
+
+Route::middleware(['auth', 'staff'])->prefix('manage')->name('manage.')->group(function () {
+    Route::resource('products', ProductController::class)->except('show');
 });
