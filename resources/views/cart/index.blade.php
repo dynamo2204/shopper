@@ -2,7 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h4>Twój koszyk</h4>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Twój koszyk</h4>
+
+    <a href="{{ route('dashboard') }}" class="btn btn-outline-dark">
+        ← Wróć do sklepu
+    </a>
+</div>
 
 @if(session('success'))
     <div class="alert alert-success">
