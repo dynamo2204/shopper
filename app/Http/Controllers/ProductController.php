@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 // Zarządzanie produktami (moderator i administrator)
 class ProductController extends Controller
@@ -80,6 +82,12 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        // produktu, który był już zamówiony, nie usuwamy - zniknęłaby historia zamówień
+        if (Schema::hasTable('order_items') && DB::table('order_items')->where('product_id', $product->id)->exists()) {
+            return redirect()->route('manage.products.index')
+                ->with('error', 'Nie można usunąć produktu, który był już zamówiony. Ustaw jego ilość w magazynie na 0.');
+        }
+
         $product->delete();
 
         return redirect()->route('manage.products.index')->with('success', 'Produkt został usunięty.');

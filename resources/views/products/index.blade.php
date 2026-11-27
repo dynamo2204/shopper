@@ -3,8 +3,15 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4>Zarządzanie produktami</h4>
-    <a href="{{ route('manage.products.create') }}" class="btn btn-dark">+ Dodaj produkt</a>
+    <div class="d-flex gap-2">
+        <a href="{{ route('manage.categories.index') }}" class="btn btn-outline-dark">Kategorie</a>
+        <a href="{{ route('manage.products.create') }}" class="btn btn-dark">+ Dodaj produkt</a>
+    </div>
 </div>
+
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
 
 <div class="card shadow-sm">
     <div class="table-responsive">

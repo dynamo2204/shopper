@@ -19,6 +19,9 @@
     @error('category_id')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
+    @if($categories->isEmpty())
+        <div class="form-text text-danger">Brak kategorii. <a href="{{ route('manage.categories.index') }}">Dodaj pierwszą kategorię</a>.</div>
+    @endif
 </div>
 
 <div class="mb-3">

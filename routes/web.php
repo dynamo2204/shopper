@@ -29,4 +29,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::middleware(['auth', 'staff'])->prefix('manage')->name('manage.')->group(function () {
     Route::resource('products', ProductController::class)->except('show');
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class)->only(['index', 'store', 'destroy']);
 });
