@@ -42,7 +42,18 @@
                             <small class="text-danger">Brak w magazynie</small>
                         @endif
                     </div>
-                    {{-- TU Osoba 3 doda przycisk "Dodaj do koszyka" --}}
+                    @if($product->stock > 0)
+    <form method="POST" action="{{ route('cart.add', $product) }}">
+        @csrf
+        <button type="submit" class="btn btn-dark w-100 mt-2">
+            Dodaj do koszyka
+        </button>
+    </form>
+@else
+    <button class="btn btn-secondary w-100 mt-2" disabled>
+        Niedostępny
+    </button>
+@endif
                 </div>
             </div>
         </div>
