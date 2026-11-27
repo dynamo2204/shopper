@@ -80,12 +80,9 @@
         </h5>
     </div>
         <div class="text-end mt-3">
-        <form method="POST" action="{{ route('order.store') }}">
-            @csrf
-            <button type="submit" class="btn btn-success">
-                Złóż zamówienie
-            </button>
-        </form>
-    </div>
+    <a href="{{ route('checkout.index') }}" class="btn btn-success">
+        Przejdź do zamówienia
+    </a>
+</div>
 @endif
 @endsection
